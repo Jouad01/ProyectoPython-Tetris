@@ -83,3 +83,17 @@ class Board:
             if element != 0:
                 return True
         return False
+
+class Game:
+    def __init__(self):
+        self.board = Board(constantes.WIDTH, constantes.HEIGHT)
+        self.pieces = None
+        self.next_pieces = None
+        self.run = True
+        self.gameover = False
+        self.clock = pygame.time.Clock()
+        self.fall_time = 0
+        self.fall_speed = 500
+        self.font = pygame.font.SysFont("Times New Roman", 50)
+
+# FALTAN MÉTODOS
