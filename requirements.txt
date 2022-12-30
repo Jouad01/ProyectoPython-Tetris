@@ -17,6 +17,7 @@ iniconfig==1.1.1
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
+numpy==1.24.1
 orjson==3.8.1
 packaging==21.2
 pipeline==0.1.0
@@ -38,7 +39,6 @@ starlette==0.20.4
 toml==0.10.2
 typing_extensions==4.4.0
 ujson==5.5.0
-urllib3==1.26.2
 uvicorn==0.18.3
 virtualenv==20.13.0
 watchfiles==0.18.1
