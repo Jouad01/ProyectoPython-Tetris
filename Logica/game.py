@@ -1,8 +1,9 @@
 # Crear clases: Piece, Board y Game
 
-from Logica import constantes
-import pygame
+import Logica.constantes as constantes
+import pygame # Se instala
 import random
+import numpy as np # Para rotar las piezas. Se instala con "pip install numpy"
 
 pygame.init()
 WINDOW_SIZE = (500, 1000)
@@ -46,26 +47,41 @@ class Board:
             grid.append([0] * width)
         return grid
 
-    def añadir_piezas(self, pieces):
-        for i in range(len(pieces.blocks)):
-            for j in range(len(pieces.blocks[i])):
-                if pieces.blocks[i][j] != 0:
-                    self.grid[pieces.y + i][pieces.x + j] = pieces.blocks[i][j]
+    def comprobar_colision(self, piece):
+        # Comprueba si la pieza colisiona con el tablero o con otra pieza
+        for i in range(len(piece.blocks)):
+            for j in range(len(piece.blocks[i])):
+                if piece.blocks[i][j] != 0:
+                    if piece.y + i >= self.height or self.grid[piece.y + i][piece.x + j] != 0:
+                        return True
+        return False
+    
+    def draw(self, screen):
+        # Dibuja la grilla del juego
+        for i in range(self.height):
+            for j in range(self.width):
+                pygame.draw.rect(screen, constantes.GRAY, (j * constantes.BLOCK_SIZE, i * constantes.BLOCK_SIZE, constantes.BLOCK_SIZE, constantes.BLOCK_SIZE), 1)
 
-    def comprobar_filas(self):
-        # Comprueba que todas las filas esten llenas 
-        borrar_lineas = []
+    def añadir_piezas(self, piece):
+        # Añade la pieza al tablero
+        for i in range(len(piece.blocks)):
+            for j in range(len(piece.blocks[i])):
+                if piece.blocks[i][j] != 0:
+                    self.grid[piece.y + i][piece.x + j] = piece.color
+
+    def check_filas(self):
+        # Comprueba si hay filas llenas y las elimina
+        filas = []
         for i in range(self.height):
             if all(self.grid[i]):
-                borrar_lineas.append(i)
-        if borrar_lineas:
-            for fila in reversed(borrar_lineas):
-                self.grid.pop(fila)
-                # Añade una fila vacia al principio
+                filas.append(i)
+        if filas:
+            for row in reversed(filas):
+                self.grid.pop(row)
                 self.grid.insert(0, [0] * self.width)
 
         # Actualiza la puntuación y el nivel
-        self.score = self.score + len(borrar_lineas) * 10
+        self.score += len(filas) * 10
         self.actualizar_nivel()
 
 
@@ -83,10 +99,23 @@ class Board:
             if element != 0:
                 return True
         return False
+        # return any(self.grid[0]) # Otra forma de hacerlo 
+
+    def draw(self, screen, font):
+        # Dibuja el tablero y la información del juego en pantalla
+        self.draw_grid(screen)
+        for i in range(self.height):
+            for j in range(self.width):
+                if self.grid[i][j] != 0:
+                    pygame.draw.rect(screen, self.grid[i][j], (j * constantes.BLOCK_SIZE, i * constantes.BLOCK_SIZE, constantes.BLOCK_SIZE, constantes.BLOCK_SIZE))
+        score_text = font.render("Score: {}".format(self.score), 1, (255, 255, 255))
+        level_text = font.render("Level: {}".format(self.level), 1, (255, 255, 255))
+        screen.blit(score_text, (constantes.BOARD_WIDTH * constantes.BLOCK_SIZE + 10, 50))
+        screen.blit(level_text, (constantes.BOARD_WIDTH * constantes.BLOCK_SIZE + 10, 100))
 
 class Game:
     def __init__(self):
-        self.board = Board(constantes.WIDTH, constantes.HEIGHT)
+        self.board = Board(constantes.BOARD_WIDTH, constantes.HEIGHT)
         self.pieces = None
         self.next_pieces = None
         self.run = True
@@ -96,4 +125,77 @@ class Game:
         self.fall_speed = 500
         self.font = pygame.font.SysFont("Times New Roman", 50)
 
-# FALTAN MÉTODOS
+    def update_display(self):
+    # Actualiza el display con la información del tablero y la pieza actual
+        self.screen.fill((0, 0, 0))
+        self.board.draw(self.screen, self.font)
+        self.current_piece.draw(self.screen, self.font)
+        pygame.display.update()
+
+    def get_current_piece(self):
+        # Devuelve la pieza actual
+        return self.current_piece
+
+    def get_next_piece(self):
+        # Devuelve la siguiente pieza
+        return self.next_piece
+
+    def generar_piezas(self):
+        # Genera una pieza aleatoria
+        return Piece(5, 0, random.choice(constantes.PIECES)) # Duda sobre esta funcion
+
+    def check_input(self):
+        keys: list = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.get_current_piece().move_left()
+            if self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().move_right()
+        if keys[pygame.K_RIGHT]:
+            self.get_current_piece().move_right()
+            if self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().move_left()
+        if keys[pygame.K_DOWN]:
+            self.get_current_piece().move_down()
+            if self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().move_up()
+        if keys[pygame.K_UP]:
+            self.get_current_piece().rotate()
+            if self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().rotate(False)
+        if keys[pygame.K_SPACE]:
+            self.get_current_piece().move_down()
+            while not self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().move_down()
+            self.get_current_piece().move_up()
+    
+    def update(self):
+        # Actualiza el juego y la pieza actual 
+        self.fall_time += self.clock.get_rawtime()
+        self.clock.tick()
+        if self.fall_time / 1000 >= self.fall_speed / 1000:
+            self.fall_time = 0
+            self.get_current_piece().move_down()
+            if self.board.comprobar_colision(self.get_current_piece()):
+                self.get_current_piece().move_up()
+                self.board.añadir_piezas(self.get_current_piece())
+                self.board.check_filas()
+                if self.board.comprobar_gameover():
+                    self.gameover = True
+                self.current_piece = self.next_piece
+                self.next_piece = self.pieces.generar_piezas()
+    
+    def run(self):
+        # Bucle principal del juego
+        while self.run:
+            if self.gameover:
+                self.run = False
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.run = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        self.run = False
+            self.check_input()
+            self.update()
+            self.update_display()
+        pygame.quit()
