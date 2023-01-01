@@ -1,6 +1,6 @@
 # Crear clases: Piece, Board y Game
 
-import Logica.constantes as constantes
+import constantes
 import pygame # Se instala
 import random
 import numpy as np # Para rotar las piezas. Se instala con "pip install numpy"
@@ -25,14 +25,15 @@ class Piece:
     def move_down(self):
         self.y += 1
     
-    def rotar(self):
-        # Pendiente de implementar
-        pass
+    def rotate(self):
+        # Numpy nos permite rotar las piezas con la función "rot90"
+        self.blocks = np.rot90(self.blocks)
+
 
 class Board:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+    def __init__(self):
+        self.width = constantes.BOARD_WIDTH
+        self.height = constantes.BOARD_HEIGHT
         self.grid = self.create_grid()
         self.level = 1
         self.score = 0
@@ -60,8 +61,8 @@ class Board:
         # Dibuja la grilla del juego
         for i in range(self.height):
             for j in range(self.width):
-                pygame.draw.rect(screen, constantes.GRAY, (j * constantes.BLOCK_SIZE, i * constantes.BLOCK_SIZE, constantes.BLOCK_SIZE, constantes.BLOCK_SIZE), 1)
-
+                pygame.draw.rect(screen, (255, 255, 255), (j * constantes.BLOCK_SIZE, i * constantes.BLOCK_SIZE, constantes.BLOCK_SIZE, constantes.BLOCK_SIZE), 1)
+    
     def añadir_piezas(self, piece):
         # Añade la pieza al tablero
         for i in range(len(piece.blocks)):
@@ -108,30 +109,31 @@ class Board:
             for j in range(self.width):
                 if self.grid[i][j] != 0:
                     pygame.draw.rect(screen, self.grid[i][j], (j * constantes.BLOCK_SIZE, i * constantes.BLOCK_SIZE, constantes.BLOCK_SIZE, constantes.BLOCK_SIZE))
-        score_text = font.render("Score: {}".format(self.score), 1, (255, 255, 255))
-        level_text = font.render("Level: {}".format(self.level), 1, (255, 255, 255))
-        screen.blit(score_text, (constantes.BOARD_WIDTH * constantes.BLOCK_SIZE + 10, 50))
-        screen.blit(level_text, (constantes.BOARD_WIDTH * constantes.BLOCK_SIZE + 10, 100))
+        # Dibuja la información del juego
+        text = font.render("Score: " + str(self.score), 1, (255, 255, 255))
+        screen.blit(text, (self.width * constantes.BLOCK_SIZE + 50, 200))
+        text = font.render("Level: " + str(self.level), 1, (255, 255, 255))
+        screen.blit(text, (self.width * constantes.BLOCK_SIZE + 50, 300))
 
 class Game:
     def __init__(self):
-        self.board = Board(constantes.BOARD_WIDTH, constantes.HEIGHT)
+        self.board = Board(constantes.BOARD_WIDTH, constantes.BOARD_HEIGHT)
         self.pieces = None
         self.next_pieces = None
         self.run = True
         self.gameover = False
         self.clock = pygame.time.Clock()
         self.fall_time = 0
-        self.fall_speed = 500
+        self.fall_speed = constantes.SPEED_MS
         self.font = pygame.font.SysFont("Times New Roman", 50)
 
     def update_display(self):
-    # Actualiza el display con la información del tablero y la pieza actual
-        self.screen.fill((0, 0, 0))
+        # Actualiza la pantalla
         self.board.draw(self.screen, self.font)
-        self.current_piece.draw(self.screen, self.font)
+        self.current_piece.draw(self.screen)
+        self.next_piece.draw(self.screen, self.font)
         pygame.display.update()
-
+        
     def get_current_piece(self):
         # Devuelve la pieza actual
         return self.current_piece
@@ -145,6 +147,7 @@ class Game:
         return Piece(5, 0, random.choice(constantes.PIECES)) # Duda sobre esta funcion
 
     def check_input(self):
+        # Comprueba si se ha pulsado alguna tecla y realiza la acción correspondiente
         keys: list = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             self.get_current_piece().move_left()
