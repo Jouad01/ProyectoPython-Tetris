@@ -16,3 +16,54 @@ COLOR = {
     "naranja": (255, 128, 0),
     # Añadir más
 }
+
+WINDOW_WIDTH = BOARD_WIDTH * BLOCK_SIZE
+WINDOW_HEIGHT = BOARD_HEIGHT * BLOCK_SIZE
+
+# Colores de los bloques
+BLOCK_COLORS = [
+    COLOR["rojo"],
+    COLOR["verde"],
+    COLOR["azul"],
+    COLOR["amarillo"],
+    COLOR["morado"],
+    COLOR["naranja"],
+]
+
+# Formas de las piezas
+I_PIECE = [
+    [1, 1, 1, 1]
+]
+
+J_PIECE = [
+    [1, 0, 0],
+    [1, 1, 1]
+]
+
+L_PIECE = [
+    [0, 0, 1],
+    [1, 1, 1]
+]
+
+O_PIECE = [
+    [1, 1],
+    [1, 1]
+]
+
+S_PIECE = [
+    [0, 1, 1],
+    [1, 1, 0]
+]
+
+T_PIECE = [
+    [0, 1, 0],
+    [1, 1, 1]
+]
+
+Z_PIECE = [
+    [1, 1, 0],
+    [0, 1, 1]
+]
+
+# Conjunto de piezas
+PIECES = [I_PIECE, J_PIECE, L_PIECE, O_PIECE, S_PIECE, T_PIECE, Z_PIECE]
