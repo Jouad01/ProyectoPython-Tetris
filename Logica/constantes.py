@@ -1,69 +1,120 @@
-# Fichero que contendrá el tiempo de caida de piezas, el ancho y los colores
-
-BOARD_WIDTH = 10
-BOARD_HEIGHT = 20
+# variables globales
+WIDTH = 900
+HEIGHT = 700
+TETRIS_WIDTH = 300 
+TETRIS_HEIGHT = 600 
 BLOCK_SIZE = 30
 
+# posiciones del tablero
+LEFT_X = (WIDTH - TETRIS_WIDTH) // 2
+LEFT_Y = HEIGHT - TETRIS_HEIGHT
 
-SPEED_MS = 500
-
-COLOR = {
-    "rojo": (255, 0, 0),
-    "verde": (0, 255, 0),
-    "azul": (0, 0, 255),
-    "amarillo": (255, 255, 0),
-    "morado": (255, 0, 255),
-    "naranja": (255, 128, 0),
-    # Añadir más
-}
-
-WINDOW_WIDTH = BOARD_WIDTH * BLOCK_SIZE
-WINDOW_HEIGHT = BOARD_HEIGHT * BLOCK_SIZE
-
-# Colores de los bloques
-BLOCK_COLORS = [
-    COLOR["rojo"],
-    COLOR["verde"],
-    COLOR["azul"],
-    COLOR["amarillo"],
-    COLOR["morado"],
-    COLOR["naranja"],
-]
+# *Tablero: es el espacio donde se mueven las piezas, una columna de 10 y 20 filas
 
 # Formas de las piezas
-I_PIECE = [
-    [1, 1, 1, 1]
-]
 
-J_PIECE = [
-    [1, 0, 0],
-    [1, 1, 1]
-]
+S = [['.....',
+    '.....',
+    '..00.',
+    '.00..',
+    '.....'],
+    ['.....',
+    '..0..',
+    '..00.',
+    '...0.',
+    '.....']]
 
-L_PIECE = [
-    [0, 0, 1],
-    [1, 1, 1]
-]
+Z = [['.....',
+    '.....',
+    '.00..',
+    '..00.',
+    '.....'],
+    ['.....',
+    '..0..',
+    '.00..',
+    '.0...',
+    '.....']]
 
-O_PIECE = [
-    [1, 1],
-    [1, 1]
-]
+I = [['..0..',
+    '..0..',
+    '..0..',
+    '..0..',
+    '.....'],
+    ['.....',
+    '0000.',
+    '.....',
+    '.....',
+    '.....']]
 
-S_PIECE = [
-    [0, 1, 1],
-    [1, 1, 0]
-]
+O = [['.....',
+    '.....',
+    '.00..',
+    '.00..',
+    '.....']]
 
-T_PIECE = [
-    [0, 1, 0],
-    [1, 1, 1]
-]
+J = [['.....',
+    '.0...',
+    '.000.',
+    '.....',
+    '.....'],
+    ['.....',
+    '..00.',
+    '..0..',
+    '..0..',
+    '.....'],
+    ['.....',
+    '.....',
+    '.000.',
+    '...0.',
+    '.....'],
+    ['.....',
+    '..0..',
+    '..0..',
+    '.00..',
+    '.....']]
 
-Z_PIECE = [
-    [1, 1, 0],
-    [0, 1, 1]
-]
+L = [['.....',
+    '...0.',
+    '.000.',
+    '.....',
+    '.....'],
+    ['.....',
+    '..0..',
+    '..0..',
+    '..00.',
+    '.....'],
+    ['.....',
+    '.....',
+    '.000.',
+    '.0...',
+    '.....'],
+    ['.....',
+    '.00..',
+    '..0..',
+    '..0..',
+    '.....']]
 
-# Conjunto de piezas
-PIECES = [I_PIECE, J_PIECE, L_PIECE, O_PIECE, S_PIECE, T_PIECE, Z_PIECE]
+T = [['.....',
+    '..0..',
+    '.000.',
+    '.....',
+    '.....'],
+    ['.....',
+    '..0..',
+    '..00.',
+    '..0..',
+    '.....'],
+    ['.....',
+    '.....',
+    '.000.',
+    '..0..',
+    '.....'],
+    ['.....',
+    '..0..',
+    '.00..',
+    '..0..',
+    '.....']]
+
+shapes = [S, Z, I, O, J, L, T]
+# los colores de la pieza
+shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
