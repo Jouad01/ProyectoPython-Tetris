@@ -124,6 +124,24 @@ def draw_next_shape(shape, surface):
     surface.blit(label, (sx + 10, sy - 30))
 
 
+# Para guardar la puntuacion en un fichero 
+# Pendiente mejorar
+def update_score(nscore):
+    score = max_score()
+
+    with open('src/utilities/scores.txt'):
+        if int(score) > nscore:
+            f.write(str(score))
+        else:
+            f.write(str(nscore))
+
+def max_score():
+    with open('src/utilities/scores.txt', 'r') as f:
+        lines = f.readlines()
+        score = lines[0].strip()
+
+    return score
+
 # uso de pygame, funcion que dibuja la ventana
 # puntuacion, fondo, tamaño, color, etc
 def draw_window(surface, grid, score=0, last_score = 0):
