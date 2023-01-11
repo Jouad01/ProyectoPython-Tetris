@@ -129,14 +129,14 @@ def draw_next_shape(shape, surface):
 def update_score(nscore):
     score = max_score()
 
-    with open('src/utilities/scores.txt'):
+    with open('utilities/scores.txt'):
         if int(score) > nscore:
             f.write(str(score))
         else:
             f.write(str(nscore))
 
 def max_score():
-    with open('src/utilities/scores.txt', 'r') as f:
+    with open('utilities/scores.txt', 'r') as f:
         lines = f.readlines()
         score = lines[0].strip()
 

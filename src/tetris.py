@@ -26,7 +26,8 @@ def main(win):
     
     # Soundtrack
     mixer.init()
-    mixer.music.load('crystals.mp3')
+    # Para cargar el archivo de audio hay que estar en /ProyectoPython-Tetris/src/ 
+    mixer.music.load('utilities/crystals.mp3')
     # -1 para que se repita
     mixer.music.play(-1)
 
