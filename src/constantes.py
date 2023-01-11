@@ -5,7 +5,7 @@ TETRIS_WIDTH = 300
 TETRIS_HEIGHT = 600 
 BLOCK_SIZE = 30
 
-# posiciones del tablero
+# posiciones del tablero 
 LEFT_X = (WIDTH - TETRIS_WIDTH) // 2
 LEFT_Y = HEIGHT - TETRIS_HEIGHT
 
