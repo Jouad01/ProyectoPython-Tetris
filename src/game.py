@@ -1,6 +1,5 @@
 import pygame
 import random
-
 from constantes import *
 
 # con esta clase se crea las piezas que usaran otras funciones
@@ -16,7 +15,7 @@ class Piece(object):
 # crea una array de 20 filas y 10 columnas que representa el tablero del Tetris
 # si la coordenada de la celda está en el diccionario locked_pos, se asigna el color de la celda desde el diccionario 
 # de lo contrario, se asigna el color negro a la celda.
-def create_grid(locked_pos={}):  # *
+def create_grid(locked_pos={}): 
     grid = [[(0,0,0) for _ in range(10)] for _ in range(20)]
 
     for i in range(len(grid)):
@@ -118,6 +117,7 @@ def draw_next_shape(shape, surface):
     for i, line in enumerate(format):
         row = list(line)
         for j, column in enumerate(row):
+            # si la columna es 0, dibuja el cuadrado de la pieza
             if column == '0':
                 pygame.draw.rect(surface, shape.color, (sx + j*BLOCK_SIZE, sy + i*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 0)
 
