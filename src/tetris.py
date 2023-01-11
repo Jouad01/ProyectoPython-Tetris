@@ -3,7 +3,9 @@ import random
 
 from constantes import *
 from game import *
-
+# para poner sonido
+from pygame.locals import *
+from pygame import mixer
 
 pygame.font.init()
 
@@ -21,6 +23,12 @@ def main(win):
     fall_speed = 0.27
     level_time = 0
     score = 0
+    
+    # Soundtrack
+    mixer.init()
+    mixer.music.load('crystals.mp3')
+    # -1 para que se repita
+    mixer.music.play(-1)
 
     while run:
         grid = create_grid(locked_positions)
