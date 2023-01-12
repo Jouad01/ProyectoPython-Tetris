@@ -54,6 +54,7 @@ def main(win):
                 run = False
                 pygame.display.quit()
 
+            # Uso de pygame para teclado
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     current_piece.x -= 1
@@ -71,6 +72,9 @@ def main(win):
                     current_piece.rotation += 1
                     if not(valid_space(current_piece, grid)):
                         current_piece.rotation -= 1
+                if event.key == pygame.K_SPACE:
+                    run = False
+                    pygame.display.quit()
 
         shape_pos = convert_shape_format(current_piece)
 
@@ -93,11 +97,19 @@ def main(win):
         pygame.display.update()
 
         if check_lost(locked_positions):
-            draw_text_middle(win, "Game Over", 80, (255,255,255))
+            draw_text_middle(win, 'GAME OVER', 80, (255,255,255))
             pygame.display.update()
             pygame.time.delay(1500)
             run = False
             update_score(score)
+            if score > last_score:
+                last_score = score
+            # duda
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.display.quit()
+
 
 # Pendiente meter creditos
 
@@ -105,7 +117,7 @@ def main_menu(win):
     run = True
     while run:
         win.fill((0,0,0))
-        draw_text_middle(win, 'Pulsa cualquier tecla', 50, (255,255,255))
+        draw_text_middle(win, 'Pulsa cualquier tecla para empezar', 50, (255,255,255))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
