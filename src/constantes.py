@@ -11,7 +11,8 @@ LEFT_Y = HEIGHT - TETRIS_HEIGHT
 
 # *Tablero: es el espacio donde se mueven las piezas, una columna de 10 y 20 filas
 
-# Formas de las piezas
+# Formas de las piezas. Cada pieza tiene dos formas, una para cada rotacion, por eso hay dos listas.
+# Los puntos son los espacios vacios, los ceros son los bloques de la pieza
 
 S = [['.....',
     '.....',
