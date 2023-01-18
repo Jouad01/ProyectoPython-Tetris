@@ -1,13 +1,21 @@
 import pygame
-import random
+import pymongo
 
-from constantes import *
+from board import *
 from game import *
 # para poner sonido
 from pygame.locals import *
 from pygame import mixer
 
+# Pedir al usuario que ingrese su nombre
+
+print(" _______________________________________________ ")
+print("|                    Tetris                     |")
+print("|_______________________________________________|")
+nombre = input("|   Usuario: ")
+print("|_______________________________________________|")
 pygame.font.init()
+
 
 def main(win): 
     last_score = max_score()
@@ -30,6 +38,12 @@ def main(win):
     mixer.music.load('utilities/crystals.mp3')
     # -1 para que se repita
     mixer.music.play(-1)
+
+    # Conectarse a la base de datos
+    client = pymongo.MongoClient("mongodb+srv://m002-student:12345@sandbox01.2yg0wjn.mongodb.net/?retryWrites=true&w=majority")
+    db = client.test
+    db = client["Tetris"]
+    puntuaciones = db["usuarios"]
 
     while run:
         grid = create_grid(locked_positions)
@@ -97,6 +111,8 @@ def main(win):
         pygame.display.update()
 
         if check_lost(locked_positions):
+            # Insertar datos en la base de datos
+            puntuaciones.insert_one({ "nombre": nombre, "puntuacion": score})
             draw_text_middle(win, 'GAME OVER', 80, (255,255,255))
             pygame.display.update()
             pygame.time.delay(1500)
@@ -110,15 +126,13 @@ def main(win):
                     if event.type == pygame.QUIT:
                         pygame.display.quit()
 
-
-# Pendiente meter creditos
-
 def main_menu(win):  
     run = True
     while run:
         win.fill((0,0,0))
         draw_text_middle(win, 'Pulsa cualquier tecla para empezar', 50, (255,255,255))
         pygame.display.update()
+        # si se presiona cualquier tecla se inicia el juego
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
