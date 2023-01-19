@@ -103,6 +103,6 @@ usar clase engargada de crear las piezas
 (Errores en las pruebas unitarias e integradas)
 
 Fallo:
-error de 1
+error
 
 
