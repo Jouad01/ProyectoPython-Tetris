@@ -48,9 +48,9 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 Preparación
 1. Descargar el pygame de la página oficial.
 2. Crear un archivo `Tetris.py` con el editor de texto de tu preferencia, ese será el archivo principal del juego (el main).
-3. Crear un archivo `constantes.py` ese será el archivo donde guardaremos las constantes del juego, en este caso las piezas del jugo.
+3. Crear un archivo `board.py` ese será el archivo donde guardaremos las constantes del juego, en este caso las piezas del jugo.
 4. Crear un archivo `game.py` ese será el archivo donde guardaremos las funciones del juego, tales como el tablero, las piezas, la puntuación,  etc.
-5. Crear un archivo `scores.txt` ese será el archivo donde se guarda la mejor puntuación del juego.
+5. Crear un archivo `record.txt` ese será el archivo donde se guarda la mejor puntuación del juego.
 6. Crear un archivo `README.md` ese será el archivo donde se guardará la documentación del proyecto.
 
 ### ¿Cómo funciona el juego?
@@ -64,6 +64,19 @@ Preparación
 
 ### Interacción del jugador con el juego
 
+1. Se mostrará por termnal elnombre del juego.
+2. Se mostrará por terminal el que el usuario debe introducir su nombre.
+3. Se abrirá una ventana y el jugador clicará cualquier tecla para empezar a jugar.
+4. Iniciará el juego.
+5. Cada vez que 'caiga' una pieza comprobara si hay una línea completa.
+    - Si hay una línea completa, se sumará 10 puntos a la puntuación.
+    - Si no, seguirá bajando las piezas.
 
+
+
+Errores:
+
+Fallo:
+error de 
 
 
