@@ -13,3 +13,6 @@ class TestBoard(unittest.TestCase):
 
     def test_tetris_height(self):
         self.assertEqual(TETRIS_HEIGHT, 600)
+
+    def test_block_size(self):
+        self.assertEqual(BLOCK_SIZE, 30)
