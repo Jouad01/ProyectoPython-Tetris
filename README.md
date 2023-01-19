@@ -87,7 +87,8 @@ acaba la partida cuando se llena el tablero de alto y cuando de clica en la barr
 
 
 
-Errores:
+## Creación del documento PCE
+(Errores en las pruebas unitarias e integradas)
 
 Fallo:
 error de 
