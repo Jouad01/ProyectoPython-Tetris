@@ -64,13 +64,26 @@ Preparación
 
 ### Interacción del jugador con el juego
 
-1. Se mostrará por termnal elnombre del juego.
+1. Se mostrará por termnal el nombre del juego.
 2. Se mostrará por terminal el que el usuario debe introducir su nombre.
 3. Se abrirá una ventana y el jugador clicará cualquier tecla para empezar a jugar.
 4. Iniciará el juego.
 5. Cada vez que 'caiga' una pieza comprobara si hay una línea completa.
     - Si hay una línea completa, se sumará 10 puntos a la puntuación.
     - Si no, seguirá bajando las piezas.
+
+### tener en cuenta 
+si el usuario sale antes no se guarda la puntuación
+
+### como generar las piezas 
+### como sabe como hace linea 
+si no hay ninguna pieza en negro sabe que no hay linea
+
+### Comparar resultados
+comparar la base de datos y guarda en el txt el la puntuación máxima  y la puntuacion
+
+### Terminar Partida
+acaba la partida cuando se llena el tablero de alto y cuando de clica en la barra espaciadora
 
 
 
