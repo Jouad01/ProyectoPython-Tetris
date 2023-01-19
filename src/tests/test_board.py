@@ -16,3 +16,9 @@ class TestBoard(unittest.TestCase):
 
     def test_block_size(self):
         self.assertEqual(BLOCK_SIZE, 30)
+
+    def test_left_x(self):
+        self.assertEqual(LEFT_X, (WIDTH - TETRIS_WIDTH) // 2)
+
+    def test_left_y(self):
+        self.assertEqual(LEFT_Y, HEIGHT - TETRIS_HEIGHT)
