@@ -48,7 +48,7 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 Preparación
 1. Descargar el pygame de la página oficial.
 2. Crear un archivo `Tetris.py` con el editor de texto de tu preferencia, ese será el archivo principal del juego (el main).
-3. Crear un archivo `board.py` ese será el archivo donde guardaremos las constantes del juego, en este caso las piezas del jugo.
+3. Crear un archivo `board.py` ese será el archivo donde guardaremos las constantes del juego, en este caso las piezas del jugo, como caen .
 4. Crear un archivo `game.py` ese será el archivo donde guardaremos las funciones del juego, tales como el tablero, las piezas, la puntuación,  etc.
 5. Crear un archivo `record.txt` ese será el archivo donde se guarda la mejor puntuación del juego.
 6. Crear un archivo `README.md` ese será el archivo donde se guardará la documentación del proyecto.
@@ -85,12 +85,24 @@ comparar la base de datos y guarda en el txt el la puntuación máxima  y la pun
 ### Terminar Partida
 acaba la partida cuando se llena el tablero de alto y cuando de clica en la barra espaciadora
 
+## Creación del documento CCF
+crear un borrador 
+
+1. board (pantalla como caen las piezas)
+2. game randon pygame importar todo del 
+3. tetris import * incluido el pymongo y el pygame
+como se juega con las teclas está en el main
+4. cración y conexxion a la base de datos
+
+
+usar clase engargada de crear las piezas
+
 
 
 ## Creación del documento PCE
 (Errores en las pruebas unitarias e integradas)
 
 Fallo:
-error de 
+error de 1
 
 
