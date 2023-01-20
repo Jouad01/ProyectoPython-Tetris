@@ -4,6 +4,9 @@
 1. [Definición](#definición)
 2. [Objetivos del proyecto](#objetivos-del-proyecto)
 2. [Planificación](#planificación)
+3. [Creación del documento IDC](#creación-del-documento-idc)
+5. [¿Cómo funciona el juego?](#¿cómo-funciona-el-juego?)
+6. [Interacción del jugador con el juego](#interacción-del-jugador-con-el-juego)
 
 ## Definición 
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
@@ -17,7 +20,13 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 - Aprender a trabajar con un repositorio remoto y local en equipo.
 
 ## Planificación
+Antes de iniciar el proyecto hemos realizado una planificación y lo hemos dividido en 4 fases:
+- IDC, Investigación y desarrollo conceptual.
+- TEP, Traslado a entorno de programa.
+- CCF, Codificación y creación de funciones.
+- PCE, Pruebas y corrección de errores.
 ### IDC (Investigación y desarrollo conceptual)
+
 
 ### TEP (Traslado a entorno de programa)
 
@@ -68,22 +77,33 @@ Preparación
 2. Se mostrará por terminal el que el usuario debe introducir su nombre.
 3. Se abrirá una ventana y el jugador clicará cualquier tecla para empezar a jugar.
 4. Iniciará el juego.
+5. Durante todo el juego se mostrará en pantalla la pieza del siguiente turno. 
 5. Cada vez que 'caiga' una pieza comprobara si hay una línea completa.
     - Si hay una línea completa, se sumará 10 puntos a la puntuación.
     - Si no, seguirá bajando las piezas.
+6. Cuando las piezas lleguen arriba(de forma vertical) el juego acaba y sale en pantalla 'GAME OVER'
 
-### tener en cuenta 
-si el usuario sale antes no se guarda la puntuación
+### Cosas a tener en cuenta 
+Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación
 
-### como generar las piezas 
+
+
+### ¿como se genera las piezas?
 ### como sabe como hace linea 
 si no hay ninguna pieza en negro sabe que no hay linea
 
-### Comparar resultados
-comparar la base de datos y guarda en el txt el la puntuación máxima  y la puntuacion
 
-### Terminar Partida
-acaba la partida cuando se llena el tablero de alto y cuando de clica en la barra espaciadora
+
+### ¿Cuando acaba el juego?
+Se acaba la partida cuando se llena el tablero de alto con las piezas  o cuando de clica en la barra espaciadora. 
+
+
+
+
+
+
+
+
 
 ## Creación del documento CCF
 crear un borrador 
@@ -99,6 +119,10 @@ usar clase engargada de crear las piezas
 
 
 
+
+
+### Comparar resultados
+comparar la base de datos y guarda en el txt el la puntuación máxima  y la puntuacion
 ## Creación del documento PCE
 (Errores en las pruebas unitarias e integradas)
 
