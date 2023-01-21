@@ -2,11 +2,12 @@
 
 ## Índice
 1. [Definición](#definición)
-2. [Objetivos del proyecto](#objetivos-del-proyecto)
-2. [Planificación](#planificación)
-3. [Creación del documento IDC](#creación-del-documento-idc)
-5. [¿Cómo funciona el juego?](#¿cómo-funciona-el-juego?)
-6. [Interacción del jugador con el juego](#interacción-del-jugador-con-el-juego)
+1. [Objetivos del proyecto](#objetivos-del-proyecto)
+1. [Requisitos](#requisitos)
+1. [Planificación](#planificación)
+1. [Creación del documento IDC](#creación-del-documento-idc)
+1. [¿Cómo funciona el juego?](#¿cómo-funciona-el-juego?)
+1. [Interacción del jugador con el juego](#interacción-del-jugador-con-el-juego)
 
 ## Definición 
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
@@ -19,21 +20,26 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 - Aplicar los conocimientos adquiridos en clase en un proyecto real.
 - Aprender a trabajar con un repositorio remoto y local en equipo.
 
+## Requisitos 
+- Incrementar un sistema workflow en git.
+- Documentar el manual técnico de la aplicación.
+
 ## Planificación
 Antes de iniciar el proyecto hemos realizado una planificación y lo hemos dividido en 4 fases:
 - IDC, Investigación y desarrollo conceptual.
 - TEP, Traslado a entorno de programa.
 - CCF, Codificación y creación de funciones.
 - PCE, Pruebas y corrección de errores.
-### IDC (Investigación y desarrollo conceptual)
+
+## Posibles tecnologías
+| Tecnologías | _workflow_ | BBDD |
+|-| - | - | 
+| MongoDB |  - | ✅ |
+| GitHub | ✅ | - |
 
 
-### TEP (Traslado a entorno de programa)
-
-### CCF (Codificación y creación de funciones)
-
-### PCE (Pruebas y corrección de errores)
-
+## Diagrama de componentes
+![](img/Diagramas_Componentes.png)
 
 ## Creación del documento IDC
 ### Instroducción
