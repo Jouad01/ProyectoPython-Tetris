@@ -140,12 +140,14 @@ def draw_next_shape(shape, surface):
 
 # Para guardar la puntuacion en un fichero 
 def update_score(actual_score):
+
     try:
         score = max_score()
     except Exception as e:
         print("Error: ", e)
         score = None
-    
+    # si no existe el fichero o la puntuacion es mayor que la puntuacion actual
+    # se actualiza el fichero
     try:
         with open('utilities/record.txt', 'w') as f:
             if score and int(score) > actual_score:
@@ -164,7 +166,6 @@ def max_score():
         print("Error: ", e)
         score = None
     return score
-
 
 
 # uso de pygame, funcion que dibuja la ventana
@@ -193,7 +194,7 @@ def draw_window(surface, grid, score=0, last_score = 0):
     sx = LEFT_X - 200
     sy = LEFT_Y + 200
 
-
+    
     surface.blit(label, (sx + 20, sy + 160))
 
     # este bucle recorre el tablero y dibuja los cuadrados
