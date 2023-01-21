@@ -9,10 +9,20 @@
 1. [¿Cómo funciona el juego?](#¿cómo-funciona-el-juego?)
 1. [Interacción del jugador con el juego](#interacción-del-jugador-con-el-juego)
 
-## Definición 
+## Introducción
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
 
 El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer líneas. Una vez creadas, desaparecen, y nos interesa hacerlo de cuatro en cuatro en vez de una en una por los puntos que hay implicados en ello. Si consigues una de cuatro, felicidades, acabas de hacer un Tetris.
+
+1. Descargar el repositorio de GitHub.
+2. Abrir el archivo `Tetris.py` con el editor de texto de tu preferencia.
+3. Descargar el pygame de la página oficial.
+4. Ejecutar el archivo `Tetris.py` con el intérprete de Python.
+5. Poner nombre al jugador.
+6. Se abrirá una ventana con el tablero de juego.
+7. Clicar cualquier tecla para empezar a jugar.
+8. Se creará una pieza aleatoria. Podremos moverla con las flechas del teclado ⬅️ ⬆️ ⬇️ ➡️.
+9. A jugar!
 
 ## Objetivos del proyecto
 
@@ -41,6 +51,17 @@ Antes de iniciar el proyecto hemos realizado una planificación y lo hemos divid
 ## Diagrama de componentes
 ![](img/Diagramas_Componentes.png)
 
+Este proyecto se compone de un archivo principal llamado `tetris`. En este se accede a multiples funciones que son llamadas a cada una de ellas(`board`, `game` y `cristals`).
+
+El archivo `board` contiene las constantes del juego, como las piezas, el tamaño del tablero, cómo caen las piezas y el color de las piezas. 
+
+El archivo `game` contiene las funciones del juego, como dibujar el tablero, dibujar las piezas, la puntuación, cómo selecciona la pieza de forma aleatoria, guarda la máxima puntuación del jugador, etc.
+
+El audio del juego se encuentra en el archivo `cristals`.
+
+`Record` es el archivo donde se guarda la máxima puntuación del jugador.
+
+
 ## Creación del documento IDC
 ### Instroducción
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
@@ -68,14 +89,13 @@ Preparación
 5. Crear un archivo `record.txt` ese será el archivo donde se guarda la mejor puntuación del juego.
 6. Crear un archivo `README.md` ese será el archivo donde se guardará la documentación del proyecto.
 
-### ¿Cómo funciona el juego?
-1. Irán bajando por el tablero las piezas de forma aleatoria.
+### ¿Cómo jugar?
+1. Irán bajando por el tablero las piezas de forma aleatoria con una función llama `random`.
 2. El jugador podrá mover las piezas con las flechas del teclado ⬅️ ⬆️ ⬇️ ➡️.
-3. El jugador podrá mover las piezas a la derecha con la tecla ➡️ .
-3. El jugador podrá mover las piezas a la izquierda con la tecla ⬅️  .
-3. El jugador podrá rotar las piezas con la tecla  ⬆️ .
-4. El jugador podrá bajar las piezas con la tecla  ⬇️ .
-
+    - El jugador podrá mover las piezas a la derecha con la tecla ➡️ .
+    - El jugador podrá mover las piezas a la izquierda con la tecla ⬅️  .
+    - El jugador podrá rotar las piezas con la tecla  ⬆️ .
+    - El jugador podrá bajar las piezas con la tecla  ⬇️ .
 
 ### Interacción del jugador con el juego
 
@@ -95,8 +115,24 @@ Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación
 
 
 ### ¿como se genera las piezas?
-### como sabe como hace linea 
-si no hay ninguna pieza en negro sabe que no hay linea
+### ¿Cómo sabe como hace linea?
+Hay una función que se llama `clean_row` que comprueba si hay una línea completa, si la hay, se elimina o sea si no hay ninguna pieza en negro(color del tablero) sabe que se ha hecho una linea. 
+
+Algoritmo de la función `clean_row`:
+
+1. Se le pasa un diccionario  que almacena las piezas y una lista de listas que representa el tablero.
+1. Inicializar un contador  para las filas completas.
+1. Recorrer el tablero.
+    1. Si no hay ningún bloque vacio en la fila aumentará el contador de filas completas.
+    1.  Guardar el índice de la fila completa.
+    1. Eliminar la posicion de la fila completa del diccionario de posiciones bloqueadas
+1. Si el contador es mayor a 0.
+    1. Recorrer las posiciones bloqueadas y ordenadas por coordenadas 
+        1. Si hay alguna fila que se encuentre por encima de la fila completa
+            1. Mover la posición bloqueada en el número de filas completas hacia abajo.
+
+![](/docs/img/eliminar_filas.png)
+###### `clean_row`
 
 
 
