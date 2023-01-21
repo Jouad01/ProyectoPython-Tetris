@@ -143,7 +143,34 @@ Se acaba la partida cuando se llena el tablero de alto con las piezas  o cuando 
 
 
 
+### Esquema BBDD
 
+El esquema de la base de datos esta organizada en dos colecciones, una para los jugadores y otra para los records.
+
+###### Validación esquema
+
+```js 
+{
+    $jsonSchema: {
+        bsonType: 'object',
+        required: [
+            'nombre',
+            'puntuacion',
+        ],
+        properties: {
+            nombre: {
+                bsonType: 'string',
+                description: 'nombre del jugador'
+            },
+            puntuacion: {
+                bsonType: 'int',
+                description: 'puntuacion del jugador'
+            },
+        }
+    }
+}
+```
+![](/docs/img/DDBB.jpeg)
 
 
 
