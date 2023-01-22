@@ -1,5 +1,7 @@
 import unittest
 import pygame
+import sys
+sys.path.append('..')
 from tetris import main
 
 class TestTetris(unittest.TestCase):

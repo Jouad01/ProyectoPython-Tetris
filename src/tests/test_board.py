@@ -1,5 +1,7 @@
 import unittest
-from src.board import *
+import sys
+sys.path.append('..')
+from board import *
 
 class TestBoard(unittest.TestCase):
     def test_width(self):
