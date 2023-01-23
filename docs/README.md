@@ -109,16 +109,40 @@ Preparación
 5. Cada vez que 'caiga' una pieza comprobara si hay una línea completa.
     - Si hay una línea completa, se sumará 10 puntos a la puntuación.
     - Si no, seguirá bajando las piezas.
-6. Cuando las piezas lleguen arriba(de forma vertical) el juego acaba y sale en pantalla 'GAME OVER'
+6. Cuando las piezas lleguen arriba(de forma vertical) el juego acaba y sale en pantalla **'GAME OVER'**
 
 ### Cosas a tener en cuenta 
 Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación.
 
 
 
-### ¿como se genera las piezas?
+### ¿Cómo se genera las piezas?
 
-Las piezas están definidas en el archivo `board.py` en una lista. Cada pieza 
+Las piezas están definidas en el archivo `board.py`. 
+Cada pieza esá definida en una lista y en esa lista tiene varias sublistas. Eso es porque cada  pieza tiene varias formas:
+- Pieza normal, clasica 
+- Pieza rotada
+
+![](/docs/img/constantes.png)
+###### Código de las piezas con sus imágenes
+
+Todas las piezas están metidas en una lista 
+```py
+shapes = [S, Z, I, O, J, L, T]
+```
+
+Y los colores de cada una de ellas está en otra lista 
+```py
+shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
+```
+
+El archivo `game` pide las piezas del archivo board:
+- Clase `Piece` crea las piezas
+- Función `convert_shape_format`: coge una pieza como argumento y devuelve una lista de coordenadas de las celtas que no son ceros. 
+- Función `draw_next_shape`: dibuja la pieza en el tablero.
+
+El archivo `tetris` usa los archivos del `board` y del `game`. El cual regorre la pieza y le asigna el color de la pieza.
+
 
 ### ¿Cómo sabe si se hace linea?
 Hay una función que se llama `clean_row` que comprueba si hay una línea completa, si la hay, se elimina o sea si no hay ninguna pieza en negro(color del tablero) sabe que se ha hecho una linea. 
@@ -178,7 +202,7 @@ El esquema de la base de datos esta organizada en dos colecciones, una para los 
 ![](/docs/img/DDBB.jpeg)
 
 
-
+_____________
 ## Creación del documento CCF
 crear un borrador 
 
@@ -195,12 +219,31 @@ usar clase engargada de crear las piezas
 
 
 
-### Comparar resultados
-comparar la base de datos y guarda en el txt el la puntuación máxima  y la puntuacion
+### ¿Cómo sabe que es la máxima puntución?
+Hay un archivo que se llama `records.py` que se encarga de guardar la máxima puntuación en un archivo txt.
+```py
+if check_lost(locked_positions):
+# Insertar datos en la base de datos
+    puntuaciones.insert_one({ "nombre": nombre, "puntuacion": score})
+    draw_text_middle(win, 'GAME OVER', 80, (255,255,255))
+    pygame.display.update()
+    pygame.time.delay(1500)
+    run = False
+    update_score(score)
+    
+    # se actualiza el ultimo puntaje si es mas alto
+    if score > last_score:
+        last_score = score
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.display.quit()
+```
+
 ## Creación del documento PCE
 (Errores en las pruebas unitarias e integradas)
 
 Fallo:
-error
+Error
 
 
