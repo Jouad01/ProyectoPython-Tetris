@@ -69,14 +69,15 @@ def check_lost(positions):
 def get_shape():
     return Piece(5, 0, random.choice(shapes))
 
-# uso de pygame para dibujar el tablero
+# uso de pygame para dibujar el texto en el centro
 def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("Times New Roman", size, bold=True)
     label = font.render(text, 1, color)
     # calculo de la posicion del texto en el centro de la pantalla. Surface.blit() dibuja la imagen en la superficie
     surface.blit(label, (LEFT_X + TETRIS_WIDTH /2 - (label.get_width()/2), LEFT_Y + TETRIS_HEIGHT/2 - label.get_height()/2))
 
-
+# uso de pygame para dibujar el tablero
+# recibe la superficie y el tablero
 def draw_grid(surface, grid):
     sx = LEFT_X
     sy = LEFT_Y
@@ -118,7 +119,7 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key)
     return cont
 
-# uso de pygame, funcion que dibuja la pieza en el tablero
+# uso de pygame, funcion que dibuja siguiente pieza
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('Times New Roman', 30)
     label = font.render('Siguiente pieza', 1, (255,255,255))
@@ -139,6 +140,7 @@ def draw_next_shape(shape, surface):
 
 
 # Para guardar la puntuacion en un fichero 
+# y leer la puntuacion maxima
 def update_score(actual_score):
 
     try:

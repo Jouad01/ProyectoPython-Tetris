@@ -12,20 +12,22 @@ from pygame import mixer
 print(" _______________________________________________ ")
 print("|                    Tetris                     |")
 print("|_______________________________________________|")
-nombre = input("|   Usuario: ")
+name = input("|   Usuario: ")
 print("|_______________________________________________|")
 pygame.font.init()
 
 
 def main(win): 
     last_score = max_score()
+    # diccionario para guardar las posiciones de las piezas que ya han caido
     locked_positions = {}
     grid = create_grid(locked_positions)
-
+    
     change_piece = False
     run = True
     current_piece = get_shape()
     next_piece = get_shape()
+    # clock para controlar los fps
     clock = pygame.time.Clock()
     fall_time = 0
     fall_speed = 0.27
@@ -55,7 +57,7 @@ def main(win):
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
         level_time += clock.get_rawtime()
-        # para controlar los fps
+        # usamos clock.tick() para que el juego no vaya mas rapido de lo que queremos
         clock.tick()
 
         # Aumenta la velocidad de caida segun el tiempo
@@ -99,7 +101,8 @@ def main(win):
                 if event.key == pygame.K_SPACE:
                     run = False
                     pygame.display.quit()
-
+        
+        # se le asigna la lista de posiciones de la pieza actual
         shape_pos = convert_shape_format(current_piece)
 
         # recorre la pieza y asigna el color 
@@ -125,7 +128,7 @@ def main(win):
 
         if check_lost(locked_positions):
             # Insertar datos en la base de datos
-            puntuaciones.insert_one({ "nombre": nombre, "puntuacion": score})
+            puntuaciones.insert_one({ "nombre": name, "puntuacion": score})
             draw_text_middle(win, 'GAME OVER', 80, (255,255,255))
             pygame.display.update()
             pygame.time.delay(1500)
