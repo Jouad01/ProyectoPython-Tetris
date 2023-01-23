@@ -1,4 +1,6 @@
-# ProyectoPython-Tetris
+<div style="text-align:center">
+<img src="img/tetris.png" width="1000px"/>
+</div>
 
 ## Índice
 1. [Definición](#definición)
@@ -49,7 +51,7 @@ Antes de iniciar el proyecto hemos realizado una planificación y lo hemos divid
 
 
 ## Diagrama de componentes
-![](img/Diagramas_Componentes.png)
+![](img/Diagramas_componentes.png)
 
 Este proyecto se compone de un archivo principal llamado `tetris`. En este se accede a multiples funciones que son llamadas a cada una de ellas(`board`, `game` y `cristals`).
 
@@ -110,12 +112,15 @@ Preparación
 6. Cuando las piezas lleguen arriba(de forma vertical) el juego acaba y sale en pantalla 'GAME OVER'
 
 ### Cosas a tener en cuenta 
-Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación
+Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación.
 
 
 
 ### ¿como se genera las piezas?
-### ¿Cómo sabe como hace linea?
+
+Las piezas están definidas en el archivo `board.py` en una lista. Cada pieza 
+
+### ¿Cómo sabe si se hace linea?
 Hay una función que se llama `clean_row` que comprueba si hay una línea completa, si la hay, se elimina o sea si no hay ninguna pieza en negro(color del tablero) sabe que se ha hecho una linea. 
 
 Algoritmo de la función `clean_row`:
