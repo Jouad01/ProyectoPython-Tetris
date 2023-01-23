@@ -14,6 +14,9 @@ Para poder ejecutar el juego se necesita tener instalado Python y el framework d
 1. Instalar [Python](https://www.python.org/downloads/).
 
 2. Instalar [Pygame](https://www.pygame.org/wiki/GettingStarted)
+```
+$ pip install pygame
+``` 
 
 3. Clonar el repositorio del proyecto.
 ```
