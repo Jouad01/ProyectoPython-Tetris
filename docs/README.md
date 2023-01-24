@@ -2,6 +2,8 @@
 <img src="img/tetris.png" width="1000px"/>
 </div>
 
+----
+###### Proyecto de [Jouad](https://github.com/Jouad01) y [Noe](https://github.com/noecrespi)
 ## Índice
 1. [Definición](#definición)
 1. [Objetivos del proyecto](#objetivos-del-proyecto)
@@ -282,19 +284,73 @@ Orden cronológico de los archivos creados:
     - Otros:
         - Pide al usuario un nombre para guardar en la base de datos el nombre y la puntuación.
 
+# Implementación
 
-1. board (pantalla como caen las piezas)
-2. game randon pygame importar todo del 
-3. tetris import * incluido el pymongo y el pygame
-como se juega con las teclas está en el main
-4. cración y conexxion a la base de datos
+## Tecnologías utilizadas
+### **MongoDB**
+
+El **MongoDB** es un sistema de base de datos NoSQL, orientado a documentos y de código abierto.
+
+### **GitHub**
+
+El **GitHub** es una forja para alojar proyectos utilizando el sistema de control de versiones Git. Lo hemos
+utilizado esta plataforma para almacenar nuestro proyecto en la nube y además hemos utilizado la rama de github
+pages para hostear nuestra web en la red.
+
+### **Python**
+
+Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código.​ Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional.
+
+## **Herramientas utilizadas**
+
+### **VsCode**
+
+El **VsCode** es un editor de código fuente (IDE) utilizado para desarrollar el código fuente. El cual podemos 
+usar las herramientas como conventional commits, live Share, git graph, Python.
+
+### **Git**
+
+El **Git** es un software de control de versiones. En nuestro caso hemos utilizado Git como sistema de versionado
+de código para compartir y trabajar sobre nuestra aplicación y para mantener un registro de los cambios realizados.
+
+### **Pygame**
+
+El **Pygame** es una biblioteca de Python que permite crear videojuegos. Nosotros hemos utilizado esta biblioteca para crear el juego.
+
+**Random**
+
+El **Random** es un módulo de Python que nos permite generar números aleatorios.
 
 
-usar clase engargada de crear las piezas
 ## Creación del documento PCE
-(Errores en las pruebas unitarias e integradas)
 
-Fallo:
-Error
+Nosotros hemos optado en hacer [TDD (Test Driven Development)]() y hemos creado las pruebas unitarias e integradas antes de crear el código. 
 
+Por otra parte, hemos probado el codigo con el método *user story* (historias de usuario), es decir, nosotros hemos testeado de forma manual el código, para comprobar que todo funcionaba correctamente.
+
+Aún así los errores que hemos encontrado durante el desarrollo del proyecto son los siguientes:
+
+**Fallo:** Queriamos añadir el el fichero `records.txt` la puntuación y el nombre del jugador. 
+**Solución:** Crear una base de datos en mongoDB y guardarlos en ella.
+
+**Fallo:** El fichero `records.txt` no se guardaba la puntuación máxima.
+**Solución:** Meter un numero en el fichero un numero para inicializar la puntuación máxima.
+
+**Fallo:** No se visualizaba bien la pantalla del juego.
+**Solución:** Buscar información de pantallas y que resolución se visualizaba mejor.
+
+**Fallo:** No se visualizaba bien las piezas del juego.
+**Solución:** Buscar información de las piezas y modificar las coordenadas de las piezas para mejorar su visualización.
+
+**Fallo:** Las piezas se salian del tablero.
+**Solución:** Poner condiciones para que las piezas no se salieran del tablero.
+
+**Fallo:** No podiamos elimiar las filas completas.
+**Solución:** Hacer un contador y controlar si la fila esta pintada de color que no sea negro.
+
+**Fallo:** No se colocaba el texto en el centro de la pantalla.
+**Solución:** Calcular y jugar con los valores de las coordenadas para que el texto se colocara en el centro de la pantalla.
+
+
+Aún asi nos ha costado encontrar algunas soluciones ya que toda la información y ejemplos que encontrabamos estaban hechos con clases, cosa que este trabajo no estaba permitido por el profesor(a pesar de eso, nos ha dejado usar una clase, para poder llevar a cabo el proyecto). 
 
