@@ -163,14 +163,8 @@ Algoritmo de la función `clean_row`:
 ![](/docs/img/eliminar_filas.png)
 ###### `clean_row`
 
-
-
 ### ¿Cuando acaba el juego?
 Se acaba la partida cuando se llena el tablero de alto con las piezas  o cuando de clica en la barra espaciadora. 
-
-
-
-
 
 ### Esquema BBDD
 
@@ -201,24 +195,6 @@ El esquema de la base de datos esta organizada en dos colecciones, una para los 
 ```
 ![](/docs/img/DDBB.jpeg)
 
-
-_____________
-## Creación del documento CCF
-crear un borrador 
-
-1. board (pantalla como caen las piezas)
-2. game randon pygame importar todo del 
-3. tetris import * incluido el pymongo y el pygame
-como se juega con las teclas está en el main
-4. cración y conexxion a la base de datos
-
-
-usar clase engargada de crear las piezas
-
-
-
-
-
 ### ¿Cómo sabe que es la máxima puntución?
 Hay un archivo que se llama `records.py` que se encarga de guardar la máxima puntuación en un archivo txt.
 ```py
@@ -239,7 +215,82 @@ if check_lost(locked_positions):
             if event.type == pygame.QUIT:
                 pygame.display.quit()
 ```
+## Creación del documento CCF
+Lo primero hemos creado un [borrador](https://github.com/Jouad01/ProyectoPython-Tetris/blob/main/Borrador/notas.txt) con todas las prestaciones e ideas del juego.
 
+Orden cronológico de los archivos creados:
+1. `board`:archivo que contiene las variables globales.
+    - Variables: 
+        - Dimendisones del tablero.
+        - Posicion del tablero(`x`, `y`).
+        - Formas de las piezas (`S`, `Z`, `I`, `O`, `J`, `L`, `T`).
+    - Listas:
+        - Todas las piezas.
+        - Colores de las piezas.
+
+2. `game`: archivo que contiene las funciones del juego.
+    - Librerias utilizadas:
+        - `pygame`: libreria para crear el juego.
+        - `random`: libreria para elegir una pieza aleatoria.
+    - Archivos importados:
+        - `board`: archivo que contiene las variables globales.
+    - Clase:
+        - `Piece`: clase que crea las piezas.
+    - Funciones:
+        - `create_grid`: crea el tablero.
+        - `convert_shape_format`: convierte la forma de la pieza en una lista de coordenadas.
+        - `valid_space`: comprueba si la pieza se puede colocar en el tablero.
+        - `check_lost`: comprueba si se ha perdido la partida, es decir si se ha llenado de piezas el tablero de forma vertical.
+        - `get_shape`: elige una pieza aleatoria usando la libreria `random`.
+        - `draw_text_middle`: dibuja el texto en el centro de la pantalla.
+        - `draw_grid`: dibuja la cuadricula del tablero en la pantalla.
+        - `clear_rows`: elimina las filas completas, encontramos algun uso de lambda.
+        - `draw_next_shape`: dibuja la siguiente pieza en la pantalla.
+        - `update_score`: actualiza la puntuación en el fichero `records.txt`, siempre que sea mayor que la puntuación anterior.
+        - `max_score`: lee el fichero `records.txt` y devuelve la puntuación máxima.
+        - `draw_window`: dibuja la ventana del juego (puntuación, fondo, tamaño, color...), usando la libreria `pygame`.
+
+3. `tetris`: archivo que contiene el bucle principal del juego.
+    - Librerias utilizadas:
+        - `pygame`: libreria para crear el juego.
+        - `pymongo`: libreria para conectar con la base de datos mongoDB.
+    - Modulos importados de pygame:
+        - `pygame.locals`: para usar en el jugo las teclas del teclado.
+        - `mixer`: para reproducir sonidos durante el juego.
+    - Archivos importados:
+        - `board`: archivo que contiene las variables globales.
+        - `game`: archivo que contiene las funciones del juego.
+    - Funciones:
+        - `main`: bucle principal del juego.
+            - Guarda las posiciones de las piezas caidas en un diccionario.
+            - Reloj para controlar los fps (fotogramas por segundo).
+            - Cargar el archivo de música y lo reproduce en bucle.
+            - Conectar con la BBDD, el cual se entcuentra un prueba y error (`try` y `except`).
+            - Mientras el programa se esté ejecutando:
+                - Contrlar el tiempo de caida de las piezas y que caigan en el tiempo adecuado.
+                - Aumentar la velocidad de caida de las piezas según el tiempo.
+                - Controlar el cierre del juego.
+                    - Controlar las teclas del teclado para mover y rotar las piezas.
+            - Asignar la posicion de la pieza en la lista. 
+            - Recorrer la pieza y asignar un color a cada una de las piezas.
+            - Recorrer la posición de la pieza y se agrega cada una de ellas al diccionario.
+                - Aumentar la puntuación por cada fila eliminada.
+            - Insertar el nombre y la puntuación en la base de datos.
+                - Actualizar la puntuación máxima si la nueva puntuación es mayor.
+        - `main_menu`: menu principal del juego.
+            - Inicializar el juego.
+    - Otros:
+        - Pide al usuario un nombre para guardar en la base de datos el nombre y la puntuación.
+
+
+1. board (pantalla como caen las piezas)
+2. game randon pygame importar todo del 
+3. tetris import * incluido el pymongo y el pygame
+como se juega con las teclas está en el main
+4. cración y conexxion a la base de datos
+
+
+usar clase engargada de crear las piezas
 ## Creación del documento PCE
 (Errores en las pruebas unitarias e integradas)
 
