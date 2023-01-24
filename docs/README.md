@@ -4,16 +4,32 @@
 
 ----
 ###### Proyecto de [Jouad](https://github.com/Jouad01) y [Noe](https://github.com/noecrespi)
-## Índice
-1. [Definición](#definición)
+# Índice
+
+1. [Introducción](#introducción)
 1. [Objetivos del proyecto](#objetivos-del-proyecto)
 1. [Requisitos](#requisitos)
 1. [Planificación](#planificación)
+1. [Analisis](#analisis)
+    1. [Posibles tecnologías](#posibles-tecnologías)
+1. [Diseño](#diseño)
+    1. [Diagrama de componentes](#diagrama-de-componentes)
 1. [Creación del documento IDC](#creación-del-documento-idc)
-1. [¿Cómo funciona el juego?](#¿cómo-funciona-el-juego?)
+1. [Creación del documento TEP](#creación-del-documento-tep)
+1. [¿Cómo jugar?](#cómo-jugar)
 1. [Interacción del jugador con el juego](#interacción-del-jugador-con-el-juego)
+1. [Cosas a tener en cuenta](#cosas-a-tener-en-cuenta)
+1. [¿Cómo se genera las piezas?](#¿cómo-se-genera-las-piezas?)
+1. [¿Cómo sabe si se hace linea?](#¿cómo-sabe-si-se-hace-linea?)
+1. [¿Cuando acaba el juego?](#¿cuando-acaba-el-juego?)
+1. [Esquema BBDD](#esquema-bbdd)
+1. [¿Cómo sabe que es la máxima puntución?](#cómo-sabe-que-es-la-máxima-puntución)
+1. [Creación del documento CCF](#creación-del-documento-ccf)
+1. [Implementación](#implementación)
+    1. [Tecnologías utilizadas](#tecnologías-utilizadas)
+1. [Creación del documento PCE](#creación-del-documento-pce)
 
-## Introducción
+# Introducción
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
 
 El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer líneas. Una vez creadas, desaparecen, y nos interesa hacerlo de cuatro en cuatro en vez de una en una por los puntos que hay implicados en ello. Si consigues una de cuatro, felicidades, acabas de hacer un Tetris.
@@ -28,30 +44,31 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 8. Se creará una pieza aleatoria. Podremos moverla con las flechas del teclado ⬅️ ⬆️ ⬇️ ➡️.
 9. A jugar!
 
-## Objetivos del proyecto
+# Objetivos del proyecto
 
 - Trabajo en equipo.    
 - Aplicar los conocimientos adquiridos en clase en un proyecto real.
 - Aprender a trabajar con un repositorio remoto y local en equipo.
 
-## Requisitos 
+# Requisitos 
 - Incrementar un sistema workflow en git.
 - Documentar el manual técnico de la aplicación.
 
-## Planificación
+# Planificación
 Antes de iniciar el proyecto hemos realizado una planificación y lo hemos dividido en 4 fases:
 - IDC, Investigación y desarrollo conceptual.
 - TEP, Traslado a entorno de programa.
 - CCF, Codificación y creación de funciones.
 - PCE, Pruebas y corrección de errores.
 
+# Analisis 
 ## Posibles tecnologías
 | Tecnologías | _workflow_ | BBDD |
 |-| - | - | 
 | MongoDB |  - | ✅ |
 | GitHub | ✅ | - |
 
-
+# Diseño
 ## Diagrama de componentes
 ![](img/Diagramas_componentes.png)
 
@@ -66,8 +83,8 @@ El audio del juego se encuentra en el archivo `cristals`.
 `Record` es el archivo donde se guarda la máxima puntuación del jugador.
 
 
-## Creación del documento IDC
-### Instroducción
+# Creación del documento IDC
+
 El tetris es un juego de piezas o elementos diferentes que deben encajar entre si.
 
 El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer líneas. Una vez creadas, desaparecen, y nos interesa hacerlo de cuatro en cuatro en vez de una en una por los puntos que hay implicados en ello. Si consigues una de cuatro, felicidades, acabas de hacer un Tetris.
@@ -82,8 +99,7 @@ El objetivo es hacer caer piezas e ir rellenando huecos para conseguir hacer lí
 8. Se creará una pieza aleatoria. Podremos moverla con las flechas del teclado ⬅️ ⬆️ ⬇️ ➡️.
 9. A jugar!
 
-
-## Creación del documento TEP
+# Creación del documento TEP
 
 Preparación
 1. Descargar el pygame de la página oficial.
@@ -93,7 +109,7 @@ Preparación
 5. Crear un archivo `record.txt` ese será el archivo donde se guarda la mejor puntuación del juego.
 6. Crear un archivo `README.md` ese será el archivo donde se guardará la documentación del proyecto.
 
-### ¿Cómo jugar?
+# ¿Cómo jugar?
 1. Irán bajando por el tablero las piezas de forma aleatoria con una función llama `random`.
 2. El jugador podrá mover las piezas con las flechas del teclado ⬅️ ⬆️ ⬇️ ➡️.
     - El jugador podrá mover las piezas a la derecha con la tecla ➡️ .
@@ -101,7 +117,7 @@ Preparación
     - El jugador podrá rotar las piezas con la tecla  ⬆️ .
     - El jugador podrá bajar las piezas con la tecla  ⬇️ .
 
-### Interacción del jugador con el juego
+# Interacción del jugador con el juego
 
 1. Se mostrará por termnal el nombre del juego.
 2. Se mostrará por terminal el que el usuario debe introducir su nombre.
@@ -113,12 +129,12 @@ Preparación
     - Si no, seguirá bajando las piezas.
 6. Cuando las piezas lleguen arriba(de forma vertical) el juego acaba y sale en pantalla **'GAME OVER'**
 
-### Cosas a tener en cuenta 
+# Cosas a tener en cuenta 
 Si el usuario sale antes de que salga el 'GAME OVER' no se guarda la puntuación.
 
 
 
-### ¿Cómo se genera las piezas?
+# ¿Cómo se genera las piezas?
 
 Las piezas están definidas en el archivo `board.py`. 
 Cada pieza esá definida en una lista y en esa lista tiene varias sublistas. Eso es porque cada  pieza tiene varias formas:
@@ -146,7 +162,7 @@ El archivo `game` pide las piezas del archivo board:
 El archivo `tetris` usa los archivos del `board` y del `game`. El cual regorre la pieza y le asigna el color de la pieza.
 
 
-### ¿Cómo sabe si se hace linea?
+# ¿Cómo sabe si se hace linea?
 Hay una función que se llama `clean_row` que comprueba si hay una línea completa, si la hay, se elimina o sea si no hay ninguna pieza en negro(color del tablero) sabe que se ha hecho una linea. 
 
 Algoritmo de la función `clean_row`:
@@ -165,10 +181,10 @@ Algoritmo de la función `clean_row`:
 ![](/docs/img/eliminar_filas.png)
 ###### `clean_row`
 
-### ¿Cuando acaba el juego?
+# ¿Cuando acaba el juego?
 Se acaba la partida cuando se llena el tablero de alto con las piezas  o cuando de clica en la barra espaciadora. 
 
-### Esquema BBDD
+# Esquema BBDD
 
 El esquema de la base de datos esta organizada en dos colecciones, una para los jugadores y otra para los records.
 
@@ -197,7 +213,7 @@ El esquema de la base de datos esta organizada en dos colecciones, una para los 
 ```
 ![](/docs/img/DDBB.jpeg)
 
-### ¿Cómo sabe que es la máxima puntución?
+# ¿Cómo sabe que es la máxima puntución?
 Hay un archivo que se llama `records.py` que se encarga de guardar la máxima puntuación en un archivo txt.
 ```py
 if check_lost(locked_positions):
@@ -217,7 +233,7 @@ if check_lost(locked_positions):
             if event.type == pygame.QUIT:
                 pygame.display.quit()
 ```
-## Creación del documento CCF
+# Creación del documento CCF
 Lo primero hemos creado un [borrador](https://github.com/Jouad01/ProyectoPython-Tetris/blob/main/Borrador/notas.txt) con todas las prestaciones e ideas del juego.
 
 Orden cronológico de los archivos creados:
@@ -322,7 +338,7 @@ El **Pygame** es una biblioteca de Python que permite crear videojuegos. Nosotro
 El **Random** es un módulo de Python que nos permite generar números aleatorios.
 
 
-## Creación del documento PCE
+# Creación del documento PCE
 
 Nosotros hemos optado en hacer [TDD (Test Driven Development)]() y hemos creado las pruebas unitarias e integradas antes de crear el código. 
 
