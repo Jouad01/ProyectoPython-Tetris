@@ -1,6 +1,6 @@
 import pygame
 import random
-from constantes import *
+from board import *
 
 # con esta clase se crea las piezas que usaran otras funciones
 # shape es la forma de la pieza, x y las coordenadas
@@ -49,9 +49,9 @@ def valid_space(shape, grid):
     pos_okay = [j for sub in pos_okay for j in sub]
 
     # convertimos la forma de la pieza en una lista de coordenadas
-    formatted = convert_shape_format(shape)
+    transform = convert_shape_format(shape)
 
-    for pos in formatted:
+    for pos in transform:
         if pos not in pos_okay:
             if pos[1] > -1:
                 return False
@@ -69,14 +69,15 @@ def check_lost(positions):
 def get_shape():
     return Piece(5, 0, random.choice(shapes))
 
-# uso de pygame para dibujar el tablero
+# uso de pygame para dibujar el texto en el centro
 def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("Times New Roman", size, bold=True)
     label = font.render(text, 1, color)
-
+    # calculo de la posicion del texto en el centro de la pantalla. Surface.blit() dibuja la imagen en la superficie
     surface.blit(label, (LEFT_X + TETRIS_WIDTH /2 - (label.get_width()/2), LEFT_Y + TETRIS_HEIGHT/2 - label.get_height()/2))
 
-
+# uso de pygame para dibujar el tablero
+# recibe la superficie y el tablero
 def draw_grid(surface, grid):
     sx = LEFT_X
     sy = LEFT_Y
@@ -118,7 +119,7 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key)
     return cont
 
-# uso de pygame, funcion que dibuja la pieza en el tablero
+# uso de pygame, funcion que dibuja siguiente pieza
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('Times New Roman', 30)
     label = font.render('Siguiente pieza', 1, (255,255,255))
@@ -132,28 +133,42 @@ def draw_next_shape(shape, surface):
         for j, column in enumerate(row):
             # si la columna es 0, dibuja el cuadrado de la pieza
             if column == '0':
+                # calculo de la posicion del cuadrado
                 pygame.draw.rect(surface, shape.color, (sx + j*BLOCK_SIZE, sy + i*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 0)
 
     surface.blit(label, (sx + 10, sy - 30))
 
 
 # Para guardar la puntuacion en un fichero 
-# Pendiente try/except
+# y leer la puntuacion maxima
 def update_score(actual_score):
-    score = max_score()
-    
-    with open('utilities/scores.txt', 'w') as f:
-        if int(score) > actual_score:
-            f.write(str(score))
-        else:
-            f.write(str(actual_score))
+
+    try:
+        score = max_score()
+    except Exception as e:
+        print("Error: ", e)
+        score = None
+    # si no existe el fichero o la puntuacion es mayor que la puntuacion actual
+    # se actualiza el fichero
+    try:
+        with open('utilities/record.txt', 'w') as f:
+            if score and int(score) > actual_score:
+                f.write(str(score))
+            else:
+                f.write(str(actual_score))
+    except Exception as e:
+        print("Error: ", e)
 
 def max_score():
-    with open('utilities/scores.txt', 'r') as f:
-        lines = f.readlines()
-        score = lines[0].strip()
-
+    try:
+        with open('utilities/record.txt', 'r') as f:
+            lines = f.readlines()
+            score = lines[0].strip()
+    except Exception as e:
+        print("Error: ", e)
+        score = None
     return score
+
 
 # uso de pygame, funcion que dibuja la ventana
 # puntuacion, fondo, tamaño, color, etc
@@ -164,6 +179,7 @@ def draw_window(surface, grid, score=0, last_score = 0):
     font = pygame.font.SysFont('IMPACT', 60)
     label = font.render('Tetris', 1, (255, 255, 255))
 
+    # calculo de la posicion del texto
     surface.blit(label, (LEFT_X + TETRIS_WIDTH / 2 - (label.get_width() / 2), 30))
 
     # puntuacion actual
@@ -180,11 +196,13 @@ def draw_window(surface, grid, score=0, last_score = 0):
     sx = LEFT_X - 200
     sy = LEFT_Y + 200
 
+    
     surface.blit(label, (sx + 20, sy + 160))
 
     # este bucle recorre el tablero y dibuja los cuadrados
     for i in range(len(grid)):
         for j in range(len(grid[i])):
+            # para cada posicion del tablero, si no es 0, dibuja el cuadrado. 0 es el color
             pygame.draw.rect(surface, grid[i][j], (LEFT_X + j*BLOCK_SIZE, LEFT_Y + i*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 0)
     # color bordes
     pygame.draw.rect(surface, (255, 255, 255), (LEFT_X, LEFT_Y, TETRIS_WIDTH, TETRIS_HEIGHT), 5)

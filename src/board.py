@@ -1,11 +1,14 @@
 # variables globales
 WIDTH = 900
 HEIGHT = 700
+# tetris width y height son las dimensiones del tablero
 TETRIS_WIDTH = 300 
 TETRIS_HEIGHT = 600 
 BLOCK_SIZE = 30
 
 # posiciones del tablero 
+# Left x es la posicion de la izquierda del tablero
+# Left y es la posicion de la parte de abajo del tablero
 LEFT_X = (WIDTH - TETRIS_WIDTH) // 2
 LEFT_Y = HEIGHT - TETRIS_HEIGHT
 
