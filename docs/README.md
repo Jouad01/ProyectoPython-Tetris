@@ -70,7 +70,7 @@ Antes de iniciar el proyecto hemos realizado una planificación y lo hemos divid
 
 # Diseño
 ## Diagrama de componentes
-![](img/Diagramas_componentes.png)
+![](img/Diagramas_Componentes.png)
 
 Este proyecto se compone de un archivo principal llamado `tetris`. En este se accede a multiples funciones que son llamadas a cada una de ellas(`board`, `game` y `cristals`).
 
